@@ -3,14 +3,18 @@ mayor de dos fechas
 dada una fecha mayor de 18
 diferencia en dias de dos fechas
 */
-date1 = new Date("Novemver 4, 2021 14:30:56");
-date2 = new Date("Novemver 20, 2022 11:15:06");
-
-console.log(date1)
-console.log(date2)
 
 
-function fechaMayor(dat1 , dat2){
+
+function mostrarFechaMayor(){
+
+    fecha1 = prompt("Introduzca la primera fecha");
+    fecha2 = prompt("Introduzca la segunda fecha");
+
+    date1 = new Date(fecha1);
+    date2 = new Date(fecha2);
+
+function fechaMayor(dat1, dat2){
     let anio1 = date1.getYear();
     let mes1 = date1.getMonth();
     let dia1 = date1.getDate();
@@ -19,63 +23,99 @@ function fechaMayor(dat1 , dat2){
     let mes2 = date2.getMonth();
     let dia2 = date2.getDate();
 
+    console.log(anio1);
+    console.log(anio2);
+
     if(anio1 < anio2){
 
-        console.log(`La fecha ${date2} es mayor.`);
+        result = `La fecha mayor es ${date2}.`;
+
+        console.log(date2)
     
     } else {
-        if (anio1 = anio2){
+        if (anio1 == anio2){
             
             if(mes1 < mes2){
     
-                console.log(`La fecha ${date2} es mayor.`);
+                result = `La fecha mayor es ${date2}.`;
+
             } else {
-                if(mes1 = mes2){
+
+                if(mes1 == mes2){
     
                     if(dia1 < dia2){
     
-                        console.log(`La fecha ${date2} es mayor.`)
+                        result = `La fecha mayor es ${date2}.`;
+
                     } else {
-                        if(dia1=dia2){
-                            console.log(`La fecha ${date1} y ${date2} son la misma.`)
+
+                        if(dia1 == dia2){
+
+                            result = `La fecha ${date1} y ${date2} son la misma.`;
+
                         } else {
-                            console.log(`La fecha ${date1} es mayor.`)
+                            
+                            result = `La fecha mayor es ${date1}.`;
                         }
                     }
                 } else {
-                    console.log(`La fecha ${date1} es mayor.`);
+                    
+                    result = `La fecha mayor es ${date1}.`;
                 }
             }
     
         } else {
             
-                console.log(`La fecha ${date1} es mayor.`);
+            result = `La fecha mayor es ${date1}.`;
         }
     }
+
+    return result;
 }
 
-fechaMayor(date1,date2);
+    alert(fechaMayor(date1,date2));
+}
 
-date3 = new Date("Novemver 20, 2004 11:15:06");
+function mostrarMayorEdad(){
 
-function mayorDe18(dat1){
+    fecha = prompt("Introduzca una fecha");
 
-    let fechaActual = date3.getFullYear();
-    let anio = date3.getYear();
+    date = new Date(fecha);
 
-    let edad = fechaActual - anio;
-    
-    console.log(fechaActual);
-    console.log(anio);
+function calcularEdad(fecha_nacimiento){
 
-    console.log(edad);
+   
+    let hoy = new Date();
+    let nacimiento = new Date(fecha_nacimiento);
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    let mes = hoy.getMonth() - nacimiento.getMonth();
+    if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())){
+
+        edad--;
+    }
+    return edad;
+}
+let edadFinal = calcularEdad(date);
+
+if(edadFinal >= 18){
+
+    alert(`Tu edad es ${edadFinal}. Eres mayor de edad!`);
+} else {
+    alert(`Tu edad es ${edadFinal}. Eres menor de edad!`);
+}
 
 }
 
-mayorDe18(date3);
 
-cad1 = date1.toDateString();
-cad2 = date2.toDateString();
+function mostrarDiferenciaDias(){
 
+    fecha1 = prompt("Introduzca la primera fecha");
+    fecha2 = prompt("Introduzca la segunda fecha");
 
+    date1 = new Date(fecha1).getTime();
+    date2 = new Date(fecha2).getTime();
 
+    let dif = (date1 - date2)/(1000*60*60*24);
+
+    alert(`La diferencia en días es ${dif}`)
+}
