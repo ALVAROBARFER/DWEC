@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej.1 fetch</title>
+</head>
+<body>
+    <p id="ditto"></p>
+    <script>
+        // Método fetch a la seccion de *ditto* de la api
+        fetch("https://pokeapi.co/api/v2/pokemon/ditto/")
+
+        .then(response=> {
+
+            // Obtenemos el status de la respuesta
+            let miStatus = response.status;
+
+            // Pintamos por pantalla el status
+            console.log(`Status: ${miStatus}`);
+
+            // Si el estatus es 200 devuelve el json
+            if(miStatus == 200){
+
+                return response.json();
+        }
+        })
+
+        // Metodo que pinta por consola los datos
+        .then(data=> {
+
+            console.log(data)            
+        });
+        </script>
+</body>
+</html>

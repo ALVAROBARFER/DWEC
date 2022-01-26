@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ej.2 fetch</title>
+</head>
+<body>
+    <h1>Imágenes de pokemon que no esten de espaldas</h1>
+    <label for="nombre">Nombre de Pokemon</label>
+    <input type="text" name="pokemon" id="nombre">
+    <button onclick="pokemon()">Buscar</button>
+    <div id="imagenes"></div>
+    <script>
+
+        // Función que crea nuevas imagenes
+        // Introduce como parámetro la url obtenida de la api
+        function imagenPokemon(src){
+            let node = document.createElement("img");
+            
+            node.setAttribute("src", src);
+
+            document.getElementById('imagenes').appendChild(node);
+        }
+
+        // Función que busca imágenes de pokemon en la api
+        // Se buscan keys que incluyan front
+        // Por cada key se obtiene la url y se llama a imagenPokemon(url)
+        // si esta existe.
+        function pokemon(){
+
+            var nombre = document.getElementById('nombre').value;
+
+            fetch(`https://pokeapi.co/api/v2/pokemon/${nombre}`)
+
+            .then(response=> response.json())
+            .then(data=> {
+
+                let keys = Object.keys(data.sprites)
+                keys = keys.filter(key => key.includes("front"))
+
+                    keys.forEach(key => {
+
+                        let url = data.sprites[key]
+
+                    if(url != null){
+                        imagenPokemon(url)
+                    }
+                    })
+                
+                })
+        }
+        </script>
+</body>
+</html>
