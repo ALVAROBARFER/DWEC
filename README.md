@@ -1,0 +1,3 @@
+# DWEC
+
+JavaScript exercises
